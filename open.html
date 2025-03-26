@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pastebin HTML Loader</title>
+</head>
+<body>
+
+<div id="content">
+  <p>Loading content from Pastebin...</p>
+</div>
+
+<script>
+async function loadPastebinHTML(pastebinUrl) {
+  try {
+    const response = await fetch(pastebinUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const htmlContent = await response.text();
+    document.getElementById('content').innerHTML = htmlContent;
+
+  } catch (error) {
+    console.error('Error loading Pastebin content:', error);
+    document.getElementById('content').innerHTML = "<p>Error loading Pastebin content.</p>";
+  }
+}
+
+// Replace with your Pastebin raw URL. Example: "https://pastebin.com/raw/YOUR_PASTEBIN_ID"
+const pastebinUrl = "https://pastebin.com/raw/eaaKPW5D";
+
+loadPastebinHTML(pastebinUrl);
+
+</script>
+
+</body>
+</html>
