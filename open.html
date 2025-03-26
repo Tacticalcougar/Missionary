@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Pastebin HTML Loader</title>
+<title>GitHub Raw HTML Loader</title>
 </head>
 <body>
 
 <div id="content">
-  <p>Loading content from Pastebin...</p>
+  <p>Loading content from GitHub Raw...</p>
 </div>
 
 <script>
-async function loadPastebinHTML(pastebinUrl) {
+async function loadGitHubRawHTML(githubRawUrl) {
   try {
-    const response = await fetch(pastebinUrl);
+    const response = await fetch(githubRawUrl);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -20,15 +20,14 @@ async function loadPastebinHTML(pastebinUrl) {
     document.getElementById('content').innerHTML = htmlContent;
 
   } catch (error) {
-    console.error('Error loading Pastebin content:', error);
-    document.getElementById('content').innerHTML = "<p>Error loading Pastebin content.</p>";
+    console.error('Error loading GitHub Raw content:', error);
+    document.getElementById('content').innerHTML = "<p>Error loading GitHub Raw content.</p>";
   }
 }
 
-// Replace with your Pastebin raw URL. Example: "https://pastebin.com/raw/YOUR_PASTEBIN_ID"
-const pastebinUrl = "https://pastebin.com/raw/eaaKPW5D";
+const githubRawUrl = "https://raw.githubusercontent.com/Tacticalcougar/Missionary/refs/heads/main/index.html";
 
-loadPastebinHTML(pastebinUrl);
+loadGitHubRawHTML(githubRawUrl);
 
 </script>
 
