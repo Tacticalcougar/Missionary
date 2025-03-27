@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>GitHub Raw HTML Loader</title>
+    <title>GitHub Raw HTML Loader</title>
 </head>
 <body>
 
 <div id="content">
-  <p>Loading content from GitHub Raw...</p>
+    <p>Loading content from GitHub Raw...</p>
 </div>
 
 <script>
-  fetch('https://raw.githubusercontent.com/Tacticalcougar/Missionary/refs/heads/main/site/index.html')
-      .then(response => response.text())
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const remoteContent = doc.getElementById('content');
-    
-        if (remoteContent) {
-          document.getElementById('content').innerHTML = remoteContent.innerHTML;
-        } else {
-          document.getElementById('content').innerHTML = '<p>Error: Content not found on remote page.</p>';
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching content:', error);
-        document.getElementById('content').innerHTML = '<p>Error: Failed to load content.</p>';
-      });
+    fetch('https://raw.githubusercontent.com/Tacticalcougar/Missionary/refs/heads/main/site/index.html')
+        .then(response => response.text())
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const remoteContent = doc.getElementById('content');
+
+            if (remoteContent) {
+                document.getElementById('content').innerHTML = remoteContent.innerHTML;
+
+                // Extract and execute scripts
+                const scripts = doc.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src; // If the script has an external source
+                    } else {
+                        newScript.textContent = script.textContent; // Inline script content
+                    }
+                    document.body.appendChild(newScript);
+                });
+            } else {
+                document.getElementById('content').innerHTML = '<p>Error: Content not found on remote page.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching content:', error);
+            document.getElementById('content').innerHTML = '<p>Error: Failed to load content.</p>';
+        });
 </script>
 </body>
 </html>
