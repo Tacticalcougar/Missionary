@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>GitHub Raw HTML Loader</title>
+<link rel="stylesheet" href="">
 </head>
 <body>
 
@@ -9,27 +10,6 @@
   <p>Loading content from GitHub Raw...</p>
 </div>
 
-<script>
-async function loadGitHubRawHTML(githubRawUrl) {
-  try {
-    const response = await fetch(githubRawUrl);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const htmlContent = await response.text();
-    document.getElementById('content').innerHTML = htmlContent;
-
-  } catch (error) {
-    console.error('Error loading GitHub Raw content:', error);
-    document.getElementById('content').innerHTML = "<p>Error loading GitHub Raw content.</p>";
-  }
-}
-
-const githubRawUrl = "https://raw.githubusercontent.com/Tacticalcougar/Missionary/refs/heads/main/index.html";
-
-loadGitHubRawHTML(githubRawUrl);
-
-</script>
 
 </body>
 </html>

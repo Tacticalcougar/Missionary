@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlapping Pages HTML</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+<body>
+    <div id="content">
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#page1">Page 1</a>
+        <a href="#page2">Page 2</a>
+        <a href="#page3">Page 3</a>
+    </nav>
+
+    <div id="home" class="page active">
+        <h1>Welcome to the Home Page</h1>
+        <p>This is the main page of our website. Navigate using the links above.</p>
+        <p>Pages overlap now!</p>
+        <button onclick="console.log('press')">Press me!</button>
+    </div>
+
+    <div id="page1" class="page">
+        <h1>Page 1</h1>
+        <p>This is the content of Page 1.</p>
+        <p>More content can be added here.</p>
+    </div>
+
+    <div id="page2" class="page">
+        <h1>Page 2</h1>
+        <p>Welcome to the second page.</p>
+        <p>Another section of information.</p>
+        <button onclick="test()">Press me!</button>
+    </div>
+
+    <div id="page3" class="page">
+        <h1>Page 3</h1>
+        <p>This is the final page.</p>
+        <p>Concluding remarks.</p>
+    </div>
+    </div>
+    
+    <script src="open.js"></script>
+</body>
+</html>
